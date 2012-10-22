@@ -1,0 +1,335 @@
+[1 of 4] Compiling Database.Definition.TPR ( Database/Definition/TPR.hs, Database/Definition/TPR.o )
+TYPE SIGNATURES
+    tPR :: Table TPR
+    tpr_created :: Attr Tpr_created (Maybe LocalTime)
+    tpr_data_1 :: Attr Tpr_data_1 String
+    tpr_data_10 :: Attr Tpr_data_10 String
+    tpr_data_11 :: Attr Tpr_data_11 String
+    tpr_data_12 :: Attr Tpr_data_12 String
+    tpr_data_2 :: Attr Tpr_data_2 String
+    tpr_data_3 :: Attr Tpr_data_3 String
+    tpr_data_4 :: Attr Tpr_data_4 String
+    tpr_data_5 :: Attr Tpr_data_5 String
+    tpr_data_6 :: Attr Tpr_data_6 String
+    tpr_data_7 :: Attr Tpr_data_7 String
+    tpr_data_8 :: Attr Tpr_data_8 String
+    tpr_data_9 :: Attr Tpr_data_9 String
+    tpr_description :: Attr Tpr_description String
+    tpr_hot_id :: Attr Tpr_hot_id Int
+    tpr_id :: Attr Tpr_id (Maybe Int)
+    tpr_min_nights :: Attr Tpr_min_nights (Maybe Int)
+    tpr_name :: Attr Tpr_name String
+    tpr_restriction :: Attr Tpr_restriction String
+    tpr_status_reg :: Attr Tpr_status_reg String
+    tpr_updated :: Attr Tpr_updated (Maybe LocalTime)
+    tpr_updated_by :: Attr Tpr_updated_by Int
+    tpr_year :: Attr Tpr_year Int
+TYPE CONSTRUCTORS
+  type TPR
+      = RecCons
+            Tpr_id
+            (Expr (Maybe Int))
+            (RecCons
+                 Tpr_name
+                 (Expr String)
+                 (RecCons
+                      Tpr_year
+                      (Expr Int)
+                      (RecCons
+                           Tpr_description
+                           (Expr String)
+                           (RecCons
+                                Tpr_hot_id
+                                (Expr Int)
+                                (RecCons
+                                     Tpr_restriction
+                                     (Expr String)
+                                     (RecCons
+                                          Tpr_min_nights
+                                          (Expr (Maybe Int))
+                                          (RecCons
+                                               Tpr_data_5
+                                               (Expr String)
+                                               (RecCons
+                                                    Tpr_data_6
+                                                    (Expr String)
+                                                    (RecCons
+                                                         Tpr_data_7
+                                                         (Expr String)
+                                                         (RecCons
+                                                              Tpr_data_8
+                                                              (Expr String)
+                                                              (RecCons
+                                                                   Tpr_data_9
+                                                                   (Expr String)
+                                                                   (RecCons
+                                                                        Tpr_data_10
+                                                                        (Expr String)
+                                                                        (RecCons
+                                                                             Tpr_data_11
+                                                                             (Expr String)
+                                                                             (RecCons
+                                                                                  Tpr_data_12
+                                                                                  (Expr String)
+                                                                                  (RecCons
+                                                                                       Tpr_data_1
+                                                                                       (Expr String)
+                                                                                       (RecCons
+                                                                                            Tpr_data_2
+                                                                                            (Expr
+                                                                                                 String)
+                                                                                            (RecCons
+                                                                                                 Tpr_data_3
+                                                                                                 (Expr
+                                                                                                      String)
+                                                                                                 (RecCons
+                                                                                                      Tpr_data_4
+                                                                                                      (Expr
+                                                                                                           String)
+                                                                                                      (RecCons
+                                                                                                           Tpr_status_reg
+                                                                                                           (Expr
+                                                                                                                String)
+                                                                                                           (RecCons
+                                                                                                                Tpr_updated_by
+                                                                                                                (Expr
+                                                                                                                     Int)
+                                                                                                                (RecCons
+                                                                                                                     Tpr_updated
+                                                                                                                     (Expr
+                                                                                                                          (Maybe
+                                                                                                                               LocalTime))
+                                                                                                                     (RecCons
+                                                                                                                          Tpr_created
+                                                                                                                          (Expr
+                                                                                                                               (Maybe
+                                                                                                                                    LocalTime))
+                                                                                                                          RecNil))))))))))))))))))))))
+      FamilyInstance: none
+  type TPR_data
+      = RecCons
+            Tpr_id
+            (Maybe Int)
+            (RecCons
+                 Tpr_name
+                 String
+                 (RecCons
+                      Tpr_year
+                      Int
+                      (RecCons
+                           Tpr_description
+                           String
+                           (RecCons
+                                Tpr_hot_id
+                                Int
+                                (RecCons
+                                     Tpr_restriction
+                                     String
+                                     (RecCons
+                                          Tpr_min_nights
+                                          (Maybe Int)
+                                          (RecCons
+                                               Tpr_data_5
+                                               String
+                                               (RecCons
+                                                    Tpr_data_6
+                                                    String
+                                                    (RecCons
+                                                         Tpr_data_7
+                                                         String
+                                                         (RecCons
+                                                              Tpr_data_8
+                                                              String
+                                                              (RecCons
+                                                                   Tpr_data_9
+                                                                   String
+                                                                   (RecCons
+                                                                        Tpr_data_10
+                                                                        String
+                                                                        (RecCons
+                                                                             Tpr_data_11
+                                                                             String
+                                                                             (RecCons
+                                                                                  Tpr_data_12
+                                                                                  String
+                                                                                  (RecCons
+                                                                                       Tpr_data_1
+                                                                                       String
+                                                                                       (RecCons
+                                                                                            Tpr_data_2
+                                                                                            String
+                                                                                            (RecCons
+                                                                                                 Tpr_data_3
+                                                                                                 String
+                                                                                                 (RecCons
+                                                                                                      Tpr_data_4
+                                                                                                      String
+                                                                                                      (RecCons
+                                                                                                           Tpr_status_reg
+                                                                                                           String
+                                                                                                           (RecCons
+                                                                                                                Tpr_updated_by
+                                                                                                                Int
+                                                                                                                (RecCons
+                                                                                                                     Tpr_updated
+                                                                                                                     (Maybe
+                                                                                                                          LocalTime)
+                                                                                                                     (RecCons
+                                                                                                                          Tpr_created
+                                                                                                                          (Maybe
+                                                                                                                               LocalTime)
+                                                                                                                          RecNil))))))))))))))))))))))
+      FamilyInstance: none
+  data Tpr_created
+      RecFlag NonRecursive
+      = Tpr_created :: Tpr_created
+      FamilyInstance: none
+  data Tpr_data_1
+      RecFlag NonRecursive
+      = Tpr_data_1 :: Tpr_data_1
+      FamilyInstance: none
+  data Tpr_data_10
+      RecFlag NonRecursive
+      = Tpr_data_10 :: Tpr_data_10
+      FamilyInstance: none
+  data Tpr_data_11
+      RecFlag NonRecursive
+      = Tpr_data_11 :: Tpr_data_11
+      FamilyInstance: none
+  data Tpr_data_12
+      RecFlag NonRecursive
+      = Tpr_data_12 :: Tpr_data_12
+      FamilyInstance: none
+  data Tpr_data_2
+      RecFlag NonRecursive
+      = Tpr_data_2 :: Tpr_data_2
+      FamilyInstance: none
+  data Tpr_data_3
+      RecFlag NonRecursive
+      = Tpr_data_3 :: Tpr_data_3
+      FamilyInstance: none
+  data Tpr_data_4
+      RecFlag NonRecursive
+      = Tpr_data_4 :: Tpr_data_4
+      FamilyInstance: none
+  data Tpr_data_5
+      RecFlag NonRecursive
+      = Tpr_data_5 :: Tpr_data_5
+      FamilyInstance: none
+  data Tpr_data_6
+      RecFlag NonRecursive
+      = Tpr_data_6 :: Tpr_data_6
+      FamilyInstance: none
+  data Tpr_data_7
+      RecFlag NonRecursive
+      = Tpr_data_7 :: Tpr_data_7
+      FamilyInstance: none
+  data Tpr_data_8
+      RecFlag NonRecursive
+      = Tpr_data_8 :: Tpr_data_8
+      FamilyInstance: none
+  data Tpr_data_9
+      RecFlag NonRecursive
+      = Tpr_data_9 :: Tpr_data_9
+      FamilyInstance: none
+  data Tpr_description
+      RecFlag NonRecursive
+      = Tpr_description :: Tpr_description
+      FamilyInstance: none
+  data Tpr_hot_id
+      RecFlag NonRecursive
+      = Tpr_hot_id :: Tpr_hot_id
+      FamilyInstance: none
+  data Tpr_id
+      RecFlag NonRecursive
+      = Tpr_id :: Tpr_id
+      FamilyInstance: none
+  data Tpr_min_nights
+      RecFlag NonRecursive
+      = Tpr_min_nights :: Tpr_min_nights
+      FamilyInstance: none
+  data Tpr_name
+      RecFlag NonRecursive
+      = Tpr_name :: Tpr_name
+      FamilyInstance: none
+  data Tpr_restriction
+      RecFlag NonRecursive
+      = Tpr_restriction :: Tpr_restriction
+      FamilyInstance: none
+  data Tpr_status_reg
+      RecFlag NonRecursive
+      = Tpr_status_reg :: Tpr_status_reg
+      FamilyInstance: none
+  data Tpr_updated
+      RecFlag NonRecursive
+      = Tpr_updated :: Tpr_updated
+      FamilyInstance: none
+  data Tpr_updated_by
+      RecFlag NonRecursive
+      = Tpr_updated_by :: Tpr_updated_by
+      FamilyInstance: none
+  data Tpr_year
+      RecFlag NonRecursive
+      = Tpr_year :: Tpr_year
+      FamilyInstance: none
+COERCION AXIOMS
+INSTANCES
+  instance FieldTag Tpr_created
+    -- Defined at Database/Definition/TPR.hs:349:10
+  instance FieldTag Tpr_updated
+    -- Defined at Database/Definition/TPR.hs:338:10
+  instance FieldTag Tpr_updated_by
+    -- Defined at Database/Definition/TPR.hs:326:10
+  instance FieldTag Tpr_status_reg
+    -- Defined at Database/Definition/TPR.hs:314:10
+  instance FieldTag Tpr_data_4
+    -- Defined at Database/Definition/TPR.hs:303:10
+  instance FieldTag Tpr_data_3
+    -- Defined at Database/Definition/TPR.hs:292:10
+  instance FieldTag Tpr_data_2
+    -- Defined at Database/Definition/TPR.hs:281:10
+  instance FieldTag Tpr_data_1
+    -- Defined at Database/Definition/TPR.hs:270:10
+  instance FieldTag Tpr_data_12
+    -- Defined at Database/Definition/TPR.hs:259:10
+  instance FieldTag Tpr_data_11
+    -- Defined at Database/Definition/TPR.hs:248:10
+  instance FieldTag Tpr_data_10
+    -- Defined at Database/Definition/TPR.hs:237:10
+  instance FieldTag Tpr_data_9
+    -- Defined at Database/Definition/TPR.hs:226:10
+  instance FieldTag Tpr_data_8
+    -- Defined at Database/Definition/TPR.hs:215:10
+  instance FieldTag Tpr_data_7
+    -- Defined at Database/Definition/TPR.hs:204:10
+  instance FieldTag Tpr_data_6
+    -- Defined at Database/Definition/TPR.hs:193:10
+  instance FieldTag Tpr_data_5
+    -- Defined at Database/Definition/TPR.hs:182:10
+  instance FieldTag Tpr_min_nights
+    -- Defined at Database/Definition/TPR.hs:170:10
+  instance FieldTag Tpr_restriction
+    -- Defined at Database/Definition/TPR.hs:158:10
+  instance FieldTag Tpr_hot_id
+    -- Defined at Database/Definition/TPR.hs:147:10
+  instance FieldTag Tpr_description
+    -- Defined at Database/Definition/TPR.hs:135:10
+  instance FieldTag Tpr_year
+    -- Defined at Database/Definition/TPR.hs:124:10
+  instance FieldTag Tpr_name
+    -- Defined at Database/Definition/TPR.hs:113:10
+  instance FieldTag Tpr_id
+    -- Defined at Database/Definition/TPR.hs:102:10
+Dependent modules: []
+Dependent packages: [array-0.4.0.0, base, deepseq-1.3.0.0,
+                     ghc-prim, haskelldb-2.1.1, integer-gmp, old-locale-1.0.0.4,
+                     old-time-1.1.0.0, pretty-1.1.1.0, time-1.4]
+[2 of 4] Compiling Mapper.Season    ( Mapper/Season.hs, Mapper/Season.o )
+
+Mapper/Season.hs:28:10:
+    Couldn't match expected type `Record TPR_data'
+                with actual type `[Record vr0]'
+    Expected type: IO (Record TPR_data)
+      Actual type: IO [Record vr0]
+    In the expression: query db $ table tPR
+    In an equation for `get': get db = query db $ table tPR
