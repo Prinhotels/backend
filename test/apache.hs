@@ -82,7 +82,7 @@ chunkedRead chunkFunc path = do
 
 -- | 'lineChunks' genera una lista perezosa de chunks. En este contexto nos
 --   nos interesa un chunk por cada hilo. Esta tarea se ejecuta en el hilo
---   principal sin necesidad de usar paralelismo.
+--   principal sin necesidad de usar paralelismo. (creo que es mentira)
 lineChunks :: Int -> FilePath -> IO [ChunkSpec]
 lineChunks numChunks path = do
     bracket (openFile path ReadMode) hClose $ \h -> do
@@ -135,7 +135,6 @@ countURLs d = return $ mapReduce
 
 main = do
     args <- getArgs
-    putStrLn "main"
     forM_ args $ \ path -> do
         m <- chunkedReadWith countURLs path
         let mostPopular (_,a) (_,b) = compare b a

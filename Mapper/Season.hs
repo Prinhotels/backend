@@ -27,10 +27,17 @@ rid = fromJust . flip (!) TPR.tpr_id
 
 
 get :: Database -> Int -> IO (State DBLocks (Maybe (Record TPR.TPR_result)))
-get db tpr_id = do
+get = get_ False
+
+getWithExclusiveLock :: Database -> Int -> IO (State DBLocks (Maybe (Record TPR.TPR_result)))
+getWithExclusiveLock = get_ True
+
+get_ :: Bool -> Database -> Int -> IO (State DBLocks (Maybe (Record TPR.TPR_result)))
+get_ fu db tpr_id = do
     mrow <- fmap listToMaybe $ query db $ do
         t <- table TPR.tPR
         restrict $ (t!TPR.tpr_id) .==. (constant (Just tpr_id))
+        if fu then forUpdate else return ()
         return t
     return . state $ \locks -> (mrow, nlocks locks mrow)
     where
@@ -39,21 +46,19 @@ get db tpr_id = do
 
 
 getByRange :: Database -> Int -> Int -> Int -> IO (State DBLocks [Record TPR.TPR_result])
-getByRange db hot_id yearFrom yearTo = do
-    putStrLn $ show $ ppSql $ do
-        t <- table TPR.tPR
-        restrict $ (t!TPR.tpr_hot_id) .==. (constant hot_id)
-              .&&. (t!TPR.tpr_year) .>=. (constant yearFrom)
-              .&&. (t!TPR.tpr_year) .<=. (constant yearTo)
-              .&&. (t!TPR.tpr_status_reg) .<>. (constant "deleted")
-        forUpdate
-        return t
+getByRange = getByRange_ False
+
+getByRangeWithExclusiveLock :: Database -> Int -> Int -> Int -> IO (State DBLocks [Record TPR.TPR_result])
+getByRangeWithExclusiveLock = getByRange_ True
+
+getByRange_ :: Bool -> Database -> Int -> Int -> Int -> IO (State DBLocks [Record TPR.TPR_result])
+getByRange_ fu db hot_id yearFrom yearTo = do
     rows <- query db $ do
         t <- table TPR.tPR
         restrict $ (t!TPR.tpr_hot_id) .==. (constant hot_id)
               .&&. (t!TPR.tpr_year) .>=. (constant yearFrom)
               .&&. (t!TPR.tpr_year) .<=. (constant yearTo)
               .&&. (t!TPR.tpr_status_reg) .<>. (constant "deleted")
-        forUpdate
+        if fu then forUpdate else return ()
         return t
     return . state $ \locks -> (rows, lock "TPR" (map rid rows) locks)
