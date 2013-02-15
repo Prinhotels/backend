@@ -22,22 +22,25 @@ import Thrift.Server (runBasicServer)
 
 
 -- import Mapper.Database (describeTable)
-import Mapper.Database (dbconn, describe, rawconn)
-import Mapper.Season (get, getByRange)
+import Control.Monad.IO.Class (liftIO)
+import Model.Mapper.Database (describe, irawconn)
+import Model.Mapper.Season (get, getByRange)
 
 import Data.Maybe (fromJust)
 import Database.HaskellDB ((!))
+import Database.HaskellDB.Sql.MySQL (generator)
+import Database.HaskellDB.HDBC (hdbcConnect)
 import Database.HDBC.MySQL(withRTSSignalsBlocked)
 import Control.Monad.Reader (runReaderT)
 import Control.Monad.State (runState)
 
 import qualified Data.Map as DM
-import Database.Definition.TPR
+import qualified Model.Database.Definition.VIEW_TPR as VTPR
 import TPR_Types (read_TPR, write_TPR, TPR(f_TPR_tpr_id, f_TPR_tpr_year))
 
 -- ghc --make -fforce-recomp -threaded Main.hs && ./Main
 
---main = withRTSSignalsBlocked $ dbconn $ \db -> do
+--main = withRTSSignalsBlocked $ hdbconn $ \db -> do
 	--x <- get db 1
 	--putStrLn $ show $ (fromJust x)!tpr_id
 	--y <- describe db "TPR"
@@ -57,18 +60,23 @@ serverFunc a (h1,h2) = do
 	dat <- read_TPR h1
 	putStrLn "Recieved data:"
 	print dat
-	withRTSSignalsBlocked $ dbconn $ \db -> do
+	rawconn <- liftIO irawconn
+	putStrLn "Raw connection ready"
+	let hdbconn = hdbcConnect generator (return rawconn)
+	putStrLn "HDBC connection ready"
+	withRTSSignalsBlocked $ hdbconn $ \db -> do
+		putStrLn "Reading database.. "
 		stater <- getByRange db 1 1000 3000
-		putStrLn "Got stater"
+		putStrLn "done."
 		let (a, _) = runState stater DM.empty --(fromIntegral $ fromJust $ f_TPR_tpr_id dat)
 		putStrLn "Got list"
 		putStrLn $ show $ a
 		let x = head a
-		putStrLn $ show $ (x)!tpr_year
-		write_TPR h1 dat {f_TPR_tpr_year = Just (fromIntegral $ (x)!tpr_year)}
+		putStrLn $ show $ (x)!VTPR.vtpr_year
+		write_TPR h1 dat {f_TPR_tpr_year = Just (fromIntegral $ (x)!VTPR.vtpr_year)}
 		tFlush t1
 		putStrLn "Data written"
-		putStrLn $ show $ (x)!tpr_year
+		putStrLn $ show $ (x)!VTPR.vtpr_year
 
 	return False
 
@@ -79,7 +87,7 @@ main = do
 
 {-  
 main :: IO ()
-main = withRTSSignalsBlocked $ dbconn $ \db -> do
+main = withRTSSignalsBlocked $ hdbconn $ \db -> do
 		x <- getByRange db 1 2 3
 		return ()
 -}
